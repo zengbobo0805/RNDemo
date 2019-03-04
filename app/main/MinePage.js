@@ -12,17 +12,19 @@ import {
     RefreshControl,
     Image,
     ScrollView,
+    Text,
     TouchableOpacity,
     View
 } from 'react-native';
-import { Text16, Text14, Paragraph } from '../component/Text'
+import {Text16, Text14, Paragraph} from '../component/Text'
 import MineItemCell from '../mine/MineItemCell';
 import SpacingView from '../component/SpacingView'
 import SettingPage from '../mine/SettingPage'
 import WebViewPage from '../component/WebViewPage'
 import AboutPage from '../mine/AboutPage'
+import JavaJsTX from '../JavaJsTX'
 
-const { width,height } = Dimensions.get('window');
+const {width, height} = Dimensions.get('window');
 
 export default class MinePage extends Component {
 
@@ -46,11 +48,17 @@ export default class MinePage extends Component {
         }, 2000);
     }
 
+    javaJsTX(){
+        this.props.navigator.push({
+            component: JavaJsTX,
+            args: {}
+        })
+    }
+
     setting() {
         this.props.navigator.push({
             component: SettingPage,
-            args: {
-            }
+            args: {}
         })
     }
 
@@ -78,14 +86,14 @@ export default class MinePage extends Component {
             for (let j = 0; j < sublist.length; j++) {
                 let data = sublist[j];
                 let cell = <MineItemCell image={data.image} title={data.title} subtitle={data.subtitle}
-                                         key={data.title} />;
+                                         key={data.title}/>;
                 cells.push(cell)
             }
             cells.push(<SpacingView key={i}/>)
         }
 
         return (
-            <View style={{flex: 1}} >
+            <View style={{flex: 1}}>
                 {cells}
             </View>
         )
@@ -95,6 +103,9 @@ export default class MinePage extends Component {
         return (
             <View style={styles.header}>
                 <View style={styles.topContainer}>
+                    <TouchableOpacity onPress={this.javaJsTX.bind(this)}>
+                        <Text style={{marginRight: 15, textSize: 24, color: 'white'}}>JAVA JS 通信</Text>
+                    </TouchableOpacity>
                     <TouchableOpacity onPress={this.setting.bind(this)}>
                         <Image style={[styles.icon, {marginRight: 15}]}
                                source={require('../images/icon_setting_white.png')}/>
@@ -105,11 +116,11 @@ export default class MinePage extends Component {
                     </TouchableOpacity>
                 </View>
                 <TouchableOpacity style={styles.userContainer} onPress={this.auth.bind(this)}>
-                    <Image style={styles.avatar} source={require('../images/ic_avatar_default.png')} />
+                    <Image style={styles.avatar} source={require('../images/ic_avatar_default.png')}/>
                     <View>
                         <View style={{flexDirection: 'row'}}>
                             <Text16 style={{color: 'white'}}>code_xzh</Text16>
-                            <Image style={{marginLeft: 4,height:18,width:18}}
+                            <Image style={{marginLeft: 4, height: 18, width: 18}}
                                    source={require('../images/beauty_v1.png')}/>
                         </View>
                         <Paragraph style={{color: 'white', marginTop: 4}}>个人信息 ></Paragraph>
@@ -148,10 +159,10 @@ export default class MinePage extends Component {
         return (
             <View style={styles.container}>
                 {/*<View style={{*/}
-                    {/*position: 'absolute',*/}
-                    {/*width: width,*/}
-                    {/*height: height / 3,*/}
-                    {/*backgroundColor: '#06C1AE'*/}
+                {/*position: 'absolute',*/}
+                {/*width: width,*/}
+                {/*height: height / 3,*/}
+                {/*backgroundColor: '#06C1AE'*/}
                 {/*}}/>*/}
                 <ScrollView
                     refreshControl={
@@ -162,7 +173,7 @@ export default class MinePage extends Component {
                         />
                     }>
                     {this.renderHeader()}
-                    <SpacingView />
+                    <SpacingView/>
                     {this.renderCells()}
                 </ScrollView>
             </View>
