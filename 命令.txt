@@ -1,0 +1,20 @@
+npm install react-native-maps --save
+
+npm install  react-native-tab-navigator --save
+
+npm install  react-native-elements --save
+
+npm install react-native-deprecated-custom-components  --save
+
+
+万能钥匙
+react-native start --reset-cache 
+adb reverse tcp:8081 tcp:8081
+
+vscode
+
+
+  1. Clear watchman watches: `watchman watch-del-all`.
+  2. Delete the `node_modules` folder: `rm -rf node_modules && npm install`.
+  3. Reset Metro Bundler cache: `rm -rf /tmp/metro-bundler-cache-*` or `npm start -- --reset-cache`.
+  4. Remove haste cache: `rm -rf /tmp/haste-map-react-native-packager-*`.
